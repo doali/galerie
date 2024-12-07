@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche d'images par date</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #6c63ff;
+            color: white;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        form {
+            margin: 20px auto;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 60%;
+            max-width: 400px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #6c63ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #5548d6;
+        }
+
+        .results {
+            margin-top: 20px;
+        }
+
+        .results h3 {
+            margin-bottom: 20px;
+        }
+
+        .results .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .results .grid-item {
+            text-align: center;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .results .grid-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .results .grid-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .results .grid-item p {
+            padding: 10px;
+            font-size: 14px;
+            color: #333;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Recherche d'images par date</h1>
+    <p>Saisissez une date au format : <strong>AAAA</strong>, <strong>AAAA MM</strong> ou <strong>AAAA MM JJ</strong></p>
+</header>
+
+<main>
+    <form method="POST" action="/">
+        <input type="text" name="search" placeholder="Exemple : 2020, 2020 07, 2020 07 26" value="{{ query }}" required>
+        <button type="submit">Rechercher</button>
+    </form>
+
+    <div class="results">
+        {% if results %}
+            <h3>Résultats de la recherche :</h3>
+            <div class="grid">
+                {% for result in results %}
+                    {% if result.endswith('.jpg') or result.endswith('.png') %}
+                        <div class="grid-item">
+                            <img src="{{ result }}" alt="Image">
+                            <p>{{ result }}</p>
+                        </div>
+                    {% else %}
+                        <div class="grid-item">
+                            <p>{{ result }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% elif query %}
+            <p>Aucune image trouvée pour la date : "{{ query }}"</p>
+        {% endif %}
+    </div>
+</main>
+
+</body>
+</html>
