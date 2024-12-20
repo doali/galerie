@@ -3,8 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recherche d'images par date</title>
+    <title>Recherche d'images</title>
     <style>
+        /* Style de la pagination */
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pagination a {
+            margin: 0 5px;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: white;
+            background-color: #6c63ff;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .pagination a:hover {
+            background-color: #5548d6;
+        }
+
+        .pagination span {
+            margin: 0 5px;
+            padding: 10px 15px;
+            font-size: 14px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -91,44 +121,121 @@
             font-size: 14px;
             color: #333;
             margin: 0;
+            opacity: 0; /* Caché par défaut */
+            transition: opacity 0.3s ease; /* Animation fluide */
+        }
+
+        /* Rendre le texte visible au survol */
+        .results .grid-item:hover p {
+            opacity: 1;
+        }    
+
+        /* Modal : fond sombre */
+        .modal {
+            display: none; /* Caché par défaut */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000; /* Toujours au-dessus */
+            justify-content: center;
+            align-items: center;
+        }
+    
+        /* Image dans le modal */
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 5px solid white;
+            box-shadow: 0 0 10px black;
+        }
+    
+        /* Bouton pour fermer le modal */
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+            outline: none;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Galerie</h1>
-    <p>Saisissez une date au format : <strong>AAAA</strong>, <strong>AAAA MM</strong> ou <strong>AAAA MM JJ</strong></p>
-</header>
+    <header>
+        <h1>Galerie</h1>
+        <p>Saisissez un mot-clef ou une date (AAAA, AAAAMM, AAAAMMJJ) :</p>
+    </header>
 
-<main>
-    <form method="POST" action="/">
-        <input type="text" name="search" placeholder="Exemple : 2020, 2020 07, 2020 07 26" value="{{ query }}" required>
-        <button type="submit">Rechercher</button>
-    </form>
+    <main>
+        <form method="POST" action="/">
+            <input type="text" name="search" placeholder="Mot-clef ou date" value="{{ query }}" required>
+            <button type="submit">Rechercher</button>
+        </form>
 
-    <div class="results">
-        {% if results %}
-            <h3>Résultats de la recherche :</h3>
-            <div class="grid">
-                {% for result in results %}
-                    {% if result.endswith('.jpg') or result.endswith('.png') %}
+        <div class="results">
+            {% if results %}
+                <h3>Résultats :</h3>
+                <div class="grid">
+                    {% for result in results %}
                         <div class="grid-item">
-                            <img src="{{ result }}" alt="Image">
+                            <img src="{{ result }}" alt="Image" loading="lazy" onclick="openModal('{{ result }}')">
                             <p>{{ result }}</p>
                         </div>
-                    {% else %}
-                        <div class="grid-item">
-                            <p>{{ result }}</p>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        {% elif query %}
-            <p>Aucune image trouvée pour la date : "{{ query }}"</p>
-        {% endif %}
-    </div>
-</main>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {% if query %}
+                    <p>Aucun résultat trouvé pour la requête : "{{ query }}"</p>
+                {% endif %}
+            {% endif %}
+        </div>
 
+        <!-- Modal -->
+        <div id="imageModal" class="modal" onclick="closeModal()">
+            <button class="modal-close" onclick="closeModal(); event.stopPropagation();">✖</button>
+            <img id="modalImage" src="" alt="Image agrandie">
+        </div>
+        
+        <!-- Pagination -->
+        {% if total_results > per_page %}
+        <div class="pagination">
+            {% if page > 1 %}
+                <a href="/?page={{ page - 1 }}&query={{ query }}">Précédent</a>
+            {% endif %}
+
+            <span>Page {{ page }} sur {{ total_pages }}</span>
+
+            {% if page < total_pages %}
+                <a href="/?page={{ page + 1 }}&query={{ query }}">Suivant</a>
+            {% endif %}
+        </div>
+        {% endif %}        
+    </main>
+            
+    <script>
+        // Pré-chargement des éléments du modal
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modalImage");
+    
+        // Ouvrir le modal
+        function openModal(imageSrc) {
+            modalImage.src = imageSrc;
+            modal.style.display = "flex";
+        }
+    
+        // Fermer le modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+    </script>
+    <script src="static/js/validation.js"></script>
+     
 </body>
 </html>
