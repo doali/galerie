@@ -18,6 +18,6 @@ chemin=${@}
 
 [ -f ${fichier} ] || touch ${fichier}
 
-for ch in ${chemin}; do
+for ch in "${chemin}"; do
 	echo "${mot_clef}:${ch}" >>${fichier}
 done
