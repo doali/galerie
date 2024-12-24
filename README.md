@@ -30,6 +30,8 @@ find static/images/* -iname "*.jpeg" -o -iname "*.jpg" -o -iname "*.png" | grep 
 
 > `grep -vi system` pour eviter de recuperer les images : connecteurs, cartes, cables...
 
+> Utiliser le script `gen_img.sh` qui realise cette operation
+
 ## Configuration
 
 ```

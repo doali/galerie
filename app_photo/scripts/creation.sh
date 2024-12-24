@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function usage {
 	echo "$(basename ${0}) <--cat mot-clef> <fichier> <chemin_images>"
 }
