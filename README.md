@@ -22,6 +22,14 @@ static/images/Camera/IMG-20230731-WA0014.jpeg
 - ln -s /mnt/HDD10T/Data/OnePlusTS/DCIM images
 - find static/images/* >images.txt
 
+### `find`
+
+```bash
+find static/images/* -iname "*.jpeg" -o -iname "*.jpg" -o -iname "*.png" | grep -vi system >images.txt
+```
+
+> `grep -vi system` pour eviter de recuperer les images : connecteurs, cartes, cables...
+
 ## Configuration
 
 ```
@@ -31,6 +39,55 @@ static/images/Camera/IMG-20230731-WA0014.jpeg
 
 <@ip machine_cible>	galerie
 ```
+
+### `~/.local/bin`
+
+> Creer des liens symboliques dans le repertoire `~/.local/bin`
+
+```bash
+ln -s $PWD/consultation.sh ~/.local/bin/photo_consultation
+ln -s $PWD/creation.sh ~/.local/bin/photo_creation
+```
+
+### `~/.bashrc`
+
+```bash
+alias photo_anne='photo_creation --cat anne $@'
+alias photo_cecile='photo_creation --cat cecile $@'
+alias photo_jean='photo_creation --cat jean $@'
+alias photo_nous='photo_creation --cat nous $@'
+alias photo_paysage='photo_creation --cat paysage $@'
+
+function photo_all {
+        for p in anne cecile jean nous; do
+                photo_creation --cat $p $@
+        done
+}
+```
+
+### `base_img.sh`
+
+Chemin : `galerie/app_photo/scripts/base_img.sh`
+
+> Lancer le script `base_img.sh` pour recuperer les chemins des images (en supprimant les doublons) et ainsi les telecharger
+
+Par exemple pour une categorie *nous*, *janvier*, ... : `base_img nous`, `base_img janvier`, ...
+
+```bash
+> cat janvier
+nous:static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20240206-WA0004.jpg
+maison:static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20240206-WA0004.jpg
+anne:static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20240216-WA0004.jpg
+cecile:static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20240216-WA0004.jpg
+```
+
+```bash
+> ./base_img.sh janvier
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20240206-WA0004.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20240216-WA0004.jpg
+```
+
+> Permet de supprimer les doublons
 
 ## Execution
 
