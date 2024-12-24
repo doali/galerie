@@ -100,3 +100,27 @@ static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20240216-WA0004.jpg
 ![utilisation](app_photo/doc/img/galerie_utilisation.png)
 
 `firefox http://galerie:8000`
+
+## Pratique
+
+> Copie de l'ensemble des images /media/blackpc/disk/DCIM/100MSDCF/DSC04523.JPG a /media/blackpc/disk/DCIM/100MSDCF/DSC04543.JPG de la machine blackpc a pi
+
+```bash
+/media/blackpc/disk/DCIM/100MSDCF/DSC04538.JPG
+/media/blackpc/disk/DCIM/100MSDCF/DSC04539.JPG
+/media/blackpc/disk/DCIM/100MSDCF/DSC04540.JPG
+/media/blackpc/disk/DCIM/100MSDCF/DSC04541.JPG
+/media/blackpc/disk/DCIM/100MSDCF/DSC04542.JPG
+/media/blackpc/disk/DCIM/100MSDCF/DSC04543.JPG
+blackpc blackpc:/media/blackpc/disk/DCIM/100MSDCF 
+> scp $(for i in {4523..4543}; do echo $PWD/DSC0$i.JPG; done) pi@<adresse_pi>:/tmp/photo
+pi@<adresse_pi>'s password: 
+DSC04523.JPG                                                                                                                                                                                      100% 5568KB   3.7MB/s   00:01    
+DSC04524.JPG                                                                                                                                                                                      100% 4896KB   4.7MB/s   00:01    
+DSC04525.JPG                                                                                                                                                                                      100% 4992KB   4.7MB/s   00:01    
+DSC04526.JPG                                                                                                                                                                                      100% 2720KB   4.6MB/s   00:00    
+DSC04527.JPG                                                                                                                                                                                      100% 2560KB   4.4MB/s   00:00    
+DSC04528.JPG                                                                                                                                                                                      100% 2496KB   4.2MB/s   00:00    
+DSC04529.JPG                                                                                                                                                                                      100% 3264KB   4.3MB/s   00:00    
+DSC04530.JPG                          
+```
