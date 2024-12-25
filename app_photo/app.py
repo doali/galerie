@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+import re
 
 app = Flask(__name__)
 
@@ -12,12 +13,26 @@ def load_image_paths(file_path):
     except FileNotFoundError:
         return []
 
+# def search_images(query, image_paths):
+#     """
+#     Recherche des images correspondant à une date ou une sous-chaîne.
+#     """
+#     query = query.lower()  # Convertir la requête en minuscules pour une recherche insensible à la casse
+#     return [path for path in image_paths if query in path.lower()]  # Filtrer les images contenant la sous-chaîne
+
 def search_images(query, image_paths):
     """
-    Recherche des images correspondant à une date ou une sous-chaîne.
+    Recherche des images correspondant à un motif basé sur une expression régulière.
+
+    :param query: Expression régulière pour rechercher dans les noms de fichiers.
+    :param image_paths: Liste des chemins d'images.
+    :return: Liste des chemins d'images correspondant au motif.
     """
-    query = query.lower()  # Convertir la requête en minuscules pour une recherche insensible à la casse
-    return [path for path in image_paths if query in path.lower()]  # Filtrer les images contenant la sous-chaîne
+    try:
+        pattern = re.compile(query, re.IGNORECASE)  # Créer un motif insensible à la casse
+        return [path for path in image_paths if pattern.search(path)]  # Filtrer avec le motif
+    except re.error as e:
+        raise ValueError(f"Expression régulière invalide : {e}")    
 
 @app.route("/", methods=["GET", "POST"])
 def home():
