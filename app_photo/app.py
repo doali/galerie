@@ -3,6 +3,7 @@ import re
 
 app = Flask(__name__)
 
+
 def load_image_paths(file_path):
     """
     Charge les chemins d'images depuis un fichier.
@@ -13,12 +14,6 @@ def load_image_paths(file_path):
     except FileNotFoundError:
         return []
 
-# def search_images(query, image_paths):
-#     """
-#     Recherche des images correspondant à une date ou une sous-chaîne.
-#     """
-#     query = query.lower()  # Convertir la requête en minuscules pour une recherche insensible à la casse
-#     return [path for path in image_paths if query in path.lower()]  # Filtrer les images contenant la sous-chaîne
 
 def search_images(query, image_paths):
     """
@@ -29,10 +24,15 @@ def search_images(query, image_paths):
     :return: Liste des chemins d'images correspondant au motif.
     """
     try:
-        pattern = re.compile(query, re.IGNORECASE)  # Créer un motif insensible à la casse
-        return [path for path in image_paths if pattern.search(path)]  # Filtrer avec le motif
+        pattern = re.compile(
+            query, re.IGNORECASE
+        )  # Créer un motif insensible à la casse
+        return [
+            path for path in image_paths if pattern.search(path)
+        ]  # Filtrer avec le motif
     except re.error as e:
-        raise ValueError(f"Expression régulière invalide : {e}")    
+        raise ValueError(f"Expression régulière invalide : {e}")
+
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -60,7 +60,9 @@ def home():
             results = search_images(query, image_paths)
 
     total_results = len(results)
-    total_pages = (total_results + per_page - 1) // per_page  # Calcul du nombre total de pages
+    total_pages = (
+        total_results + per_page - 1
+    ) // per_page  # Calcul du nombre total de pages
     start = (page - 1) * per_page
     end = start + per_page
     paginated_results = results[start:end]
@@ -72,8 +74,9 @@ def home():
         page=page,
         total_pages=total_pages,
         total_results=total_results,
-        per_page=per_page
+        per_page=per_page,
     )
 
+
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=8000)
+    app.run(debug=True, host="0.0.0.0", port=8000)
