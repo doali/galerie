@@ -179,6 +179,20 @@
         </form>
 
         <div class="results">
+            {% if total_results > per_page %}
+            <div class="pagination">
+                {% if page > 1 %}
+                    <a href="/?page={{ page - 1 }}&query={{ query }}">Précédent</a>
+                {% endif %}
+
+                <span>Page {{ page }} sur {{ total_pages }}</span>
+
+                {% if page < total_pages %}
+                    <a href="/?page={{ page + 1 }}&query={{ query }}">Suivant</a>
+                {% endif %}
+            </div>
+            {% endif %}
+
             {% if results %}
                 <h3>Résultats :</h3>
                 <div class="grid">
@@ -194,28 +208,27 @@
                     <p>Aucun résultat trouvé pour la requête : "{{ query }}"</p>
                 {% endif %}
             {% endif %}
+
+            {% if total_results > per_page %}
+            <div class="pagination">
+                {% if page > 1 %}
+                    <a href="/?page={{ page - 1 }}&query={{ query }}">Précédent</a>
+                {% endif %}
+
+                <span>Page {{ page }} sur {{ total_pages }}</span>
+
+                {% if page < total_pages %}
+                    <a href="/?page={{ page + 1 }}&query={{ query }}">Suivant</a>
+                {% endif %}
+            </div>
+            {% endif %}
         </div>
 
         <!-- Modal -->
         <div id="imageModal" class="modal" onclick="closeModal()">
             <button class="modal-close" onclick="closeModal(); event.stopPropagation();">✖</button>
             <img id="modalImage" src="" alt="Image agrandie">
-        </div>
-        
-        <!-- Pagination -->
-        {% if total_results > per_page %}
-        <div class="pagination">
-            {% if page > 1 %}
-                <a href="/?page={{ page - 1 }}&query={{ query }}">Précédent</a>
-            {% endif %}
-
-            <span>Page {{ page }} sur {{ total_pages }}</span>
-
-            {% if page < total_pages %}
-                <a href="/?page={{ page + 1 }}&query={{ query }}">Suivant</a>
-            {% endif %}
-        </div>
-        {% endif %}        
+        </div>             
     </main>
             
     <script>
