@@ -1,7 +1,8 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for, session, flash
 import re
 
 app = Flask(__name__)
+app.secret_key = "votre_cle_secrete"  # Clé secrète pour les sessions
 
 
 def load_image_paths(file_path):
@@ -34,8 +35,46 @@ def search_images(query, image_paths):
         raise ValueError(f"Expression régulière invalide : {e}")
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    """
+    Route pour la page de connexion.
+    """
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        # Vérification des identifiants
+        if username == "admin" and password == "password":  # Modifiez ces valeurs pour plus de sécurité
+            session["logged_in"] = True
+            flash("Connexion réussie", "success")
+            return redirect(url_for("home"))
+        else:
+            flash("Nom d'utilisateur ou mot de passe incorrect", "error")
+
+    return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    """
+    Route pour déconnexion.
+    """
+    session.pop("logged_in", None)
+    flash("Vous avez été déconnecté", "info")
+    return redirect(url_for("login"))
+
+
 @app.route("/", methods=["GET", "POST"])
 def home():
+    """
+    Route principale pour la galerie.
+    """
+    # Vérification de l'authentification
+    if not session.get("logged_in"):
+        flash("Veuillez vous connecter pour accéder à la galerie", "warning")
+        return redirect(url_for("login"))
+
     image_paths = load_image_paths("images.txt")  # Charger les chemins des images
     query = ""
     results = []
