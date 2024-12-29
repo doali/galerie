@@ -2,6 +2,7 @@
 
 from flask import Flask, request, render_template, redirect, url_for, session, flash
 from authentification import validate_user, create_users_table, admin_required  # Importer les fonctions nécessaires
+import sqlite3
 import re
 
 app = Flask(__name__)
