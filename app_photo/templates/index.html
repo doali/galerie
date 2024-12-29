@@ -35,6 +35,7 @@
             background-color: #e0e0e0;
             border-radius: 5px;
         }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -128,7 +129,7 @@
         /* Rendre le texte visible au survol */
         .results .grid-item:hover p {
             opacity: 1;
-        }    
+        }
 
         /* Modal : fond sombre */
         .modal {
@@ -143,7 +144,7 @@
             justify-content: center;
             align-items: center;
         }
-    
+
         /* Image dans le modal */
         .modal img {
             max-width: 90%;
@@ -151,7 +152,7 @@
             border: 5px solid white;
             box-shadow: 0 0 10px black;
         }
-    
+
         /* Bouton pour fermer le modal */
         .modal-close {
             position: absolute;
@@ -164,6 +165,22 @@
             border: none;
             outline: none;
         }
+
+        /* Style du bouton de déconnexion */
+        .logout-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .logout-btn:hover {
+            background-color: #d32f2f;
+        }
     </style>
 </head>
 <body>
@@ -173,6 +190,13 @@
     </header>
 
     <main>
+        {% if session['username'] %}
+            <!-- Affichage du bouton de déconnexion si l'utilisateur est connecté -->
+            <form action="{{ url_for('logout') }}" method="POST">
+                <button type="submit" class="logout-btn">Se déconnecter</button>
+            </form>
+        {% endif %}
+
         <form method="POST" action="/">
             <input type="text" name="search" placeholder="Mot-clef ou date" value="{{ query }}" required>
             <button type="submit">Rechercher</button>
@@ -230,24 +254,24 @@
             <img id="modalImage" src="" alt="Image agrandie">
         </div>             
     </main>
-            
+
     <script>
         // Pré-chargement des éléments du modal
         const modal = document.getElementById("imageModal");
         const modalImage = document.getElementById("modalImage");
-    
+
         // Ouvrir le modal
         function openModal(imageSrc) {
             modalImage.src = imageSrc;
             modal.style.display = "flex";
         }
-    
+
         // Fermer le modal
         function closeModal() {
             modal.style.display = "none";
         }
     </script>
     <script src="static/js/validation.js"></script>
-     
+
 </body>
 </html>
