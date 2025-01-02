@@ -22139,6 +22139,12 @@ static/images/OnePlusTS/DCIM/Camera/IMG_20241229_063201.jpg
 static/images/OnePlusTS/DCIM/Camera/IMG_20241229_063211.jpg
 static/images/OnePlusTS/DCIM/Camera/IMG_20241229_063223.jpg
 static/images/OnePlusTS/DCIM/Camera/IMG_20241229_063235.jpg
+static/images/OnePlusTS/DCIM/Camera/IMG_20241231_134239.jpg
+static/images/OnePlusTS/DCIM/Camera/IMG_20241231_155151.jpg
+static/images/OnePlusTS/DCIM/Camera/IMG_20241231_155224.jpg
+static/images/OnePlusTS/DCIM/Camera/IMG_20250101_131844.jpg
+static/images/OnePlusTS/DCIM/Camera/IMG_20250101_131931.jpg
+static/images/OnePlusTS/DCIM/Camera/IMG_20250101_132047.jpg
 static/images/OnePlusTS/DCIM/Camera/Mouge/IMG_20190723_134322.jpg
 static/images/OnePlusTS/DCIM/Camera/Mouge/IMG_20190723_134349.jpg
 static/images/OnePlusTS/DCIM/Camera/Mouge/IMG_20200726_130633.jpg
@@ -30646,6 +30652,7 @@ static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241225-WA0077.jpg
 static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241225-WA0095.jpg
 static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241227-WA0012.jpg
 static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241227-WA0028.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0001.jpg
 static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241219-WA0008.jpg
 static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241220-WA0002.jpg
 static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241223-WA0004.jpeg
@@ -30722,6 +30729,32 @@ static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241227-WA0050.jpg
 static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241227-WA0051.jpg
 static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241227-WA0052.jpg
 static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241229-WA0000.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0003.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0023.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0024.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0025.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0026.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0027.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0028.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0029.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0030.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0031.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0032.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0036.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0037.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0038.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0039.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0040.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0042.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0043.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0044.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0045.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20241230-WA0048.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20250101-WA0014.jpeg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20250101-WA0016.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20250101-WA0017.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20250101-WA0020.jpg
+static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20250101-WA0021.jpg
 static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/Private/IMG-20230111-WA0002.jpg
 static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/Private/IMG-20230112-WA0003.jpg
 static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/Private/IMG-20230113-WA0000.jpg
@@ -36802,6 +36835,8 @@ static/images/SonyPhoto/DSC04541.JPG
 static/images/SonyPhoto/DSC04559.JPG
 static/images/SonyPhoto/DSC04577.JPG
 static/images/SonyPhoto/DSC04595.JPG
+static/images/SonyPhoto/DSC04613.JPG
+static/images/SonyPhoto/DSC04632.JPG
 static/images/SonyPhoto/DSC04362.JPG
 static/images/SonyPhoto/DSC04363.JPG
 static/images/SonyPhoto/DSC04364.JPG
@@ -37040,4 +37075,41 @@ static/images/SonyPhoto/DSC04609.JPG
 static/images/SonyPhoto/DSC04610.JPG
 static/images/SonyPhoto/DSC04611.JPG
 static/images/SonyPhoto/DSC04612.JPG
-static/images/SonyPhoto/DSC04613.JPG
+static/images/SonyPhoto/DSC04614.JPG
+static/images/SonyPhoto/DSC04615.JPG
+static/images/SonyPhoto/DSC04616.JPG
+static/images/SonyPhoto/DSC04617.JPG
+static/images/SonyPhoto/DSC04618.JPG
+static/images/SonyPhoto/DSC04619.JPG
+static/images/SonyPhoto/DSC04620.JPG
+static/images/SonyPhoto/DSC04621.JPG
+static/images/SonyPhoto/DSC04622.JPG
+static/images/SonyPhoto/DSC04623.JPG
+static/images/SonyPhoto/DSC04624.JPG
+static/images/SonyPhoto/DSC04625.JPG
+static/images/SonyPhoto/DSC04626.JPG
+static/images/SonyPhoto/DSC04627.JPG
+static/images/SonyPhoto/DSC04629.JPG
+static/images/SonyPhoto/DSC04630.JPG
+static/images/SonyPhoto/DSC04631.JPG
+static/images/SonyPhoto/DSC04633.JPG
+static/images/SonyPhoto/DSC04634.JPG
+static/images/SonyPhoto/DSC04635.JPG
+static/images/SonyPhoto/DSC04636.JPG
+static/images/SonyPhoto/DSC04637.JPG
+static/images/SonyPhoto/DSC04639.JPG
+static/images/SonyPhoto/DSC04640.JPG
+static/images/SonyPhoto/DSC04641.JPG
+static/images/SonyPhoto/DSC04642.JPG
+static/images/SonyPhoto/DSC04644.JPG
+static/images/SonyPhoto/DSC04646.JPG
+static/images/SonyPhoto/DSC04648.JPG
+static/images/SonyPhoto/DSC04652.JPG
+static/images/SonyPhoto/DSC04653.JPG
+static/images/SonyPhoto/DSC04654.JPG
+static/images/SonyPhoto/DSC04655.JPG
+static/images/SonyPhoto/DSC04658.JPG
+static/images/SonyPhoto/DSC04659.JPG
+static/images/SonyPhoto/DSC04660.JPG
+static/images/SonyPhoto/DSC04661.JPG
+static/images/SonyPhoto/DSC04662.JPG
