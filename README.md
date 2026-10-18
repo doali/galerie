@@ -95,6 +95,13 @@ static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20240216-WA0004.jpg
 
 `python3 /tmp/galerie/app_photo/app.py`
 
+``` bash
+# Se positionner dans le répertoire app_photo
+python3 app.py
+```
+
+> Utiliser : nohup, screen, tmux pour encapsuler le lancement
+
 ## Utilisation
 
 ![utilisation](app_photo/doc/img/galerie_utilisation.png)
