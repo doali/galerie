@@ -91,22 +91,272 @@ static/images/OnePlusTS/WhatsApp_Images/WhatsApp Images/IMG-20240216-WA0004.jpg
 
 > Permet de supprimer les doublons
 
-## Execution
+## Exécution
 
-`python3 /tmp/galerie/app_photo/app.py`
+### Mode développement
 
-``` bash
-# Se positionner dans le répertoire app_photo
+Depuis le répertoire `app_photo` :
+
+```bash
 python3 app.py
 ```
 
-> Utiliser : nohup, screen, tmux pour encapsuler le lancement
+Avec le code actuel :
 
-## Utilisation
+```python
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=8000)
+```
+
+Le mode débogage Flask est activé :
+
+- rechargement automatique lors d'une modification du code
+- affichage détaillé des exceptions
+- redémarrage automatique du processus Flask
+
+Exemple :
+
+```text
+* Serving Flask app "app"
+* Debug mode: on
+* Running on http://0.0.0.0:8000/
+* Restarting with stat
+* Debugger is active!
+```
+
+---
+
+### Mode production
+
+Modifier la fin du fichier `app.py` :
+
+```python
+if __name__ == "__main__":
+    app.run(debug=False, host="0.0.0.0", port=8000)
+```
+
+ou :
+
+```python
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000)
+```
+
+Le rechargement automatique et le debugger Flask sont alors désactivés.
+
+Exemple :
+
+```text
+* Serving Flask app "app"
+* Debug mode: off
+* Running on http://0.0.0.0:8000/
+```
+
+---
+
+## Exécution avec Screen
+
+`screen` permet de détacher l'application du terminal courant puis de s'y rattacher ultérieurement.
+
+### Lancement
+
+```bash
+cd ~/git-github/galerie/app_photo
+
+screen -S galerie
+python3 app.py
+```
+
+Détacher la session :
+
+```bash
+CTRL+a d
+```
+
+### Afficher les sessions
+
+```bash
+screen -ls
+```
+
+Exemple :
+
+```text
+There is a screen on:
+    12345.galerie    (Detached)
+```
+
+### Reprendre la session
+
+```bash
+screen -r galerie
+```
+
+### Arrêter l'application
+
+Se rattacher à la session :
+
+```bash
+screen -r galerie
+```
+
+Puis interrompre Flask :
+
+```bash
+CTRL+c
+```
+
+ou fermer complètement la session :
+
+```bash
+exit
+```
+
+### Lancement direct en arrière-plan
+
+```bash
+screen -dmS galerie python3 app.py
+```
+
+---
+
+## Démarrage automatique avec systemd
+
+> Méthode recommandée sur Debian et Raspberry Pi OS.
+
+Créer le fichier :
+
+```bash
+sudo vim /etc/systemd/system/galerie.service
+```
+
+Contenu :
+
+```ini
+[Unit]
+Description=Galerie Photo
+After=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/git-github/galerie/app_photo
+ExecStart=/usr/bin/python3 app.py
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### Chargement du service
+
+```bash
+sudo systemctl daemon-reload
+```
+
+### Démarrage
+
+```bash
+sudo systemctl start galerie
+```
+
+### Activation au démarrage du Raspberry
+
+```bash
+sudo systemctl enable galerie
+```
+
+### Vérification du statut
+
+```bash
+sudo systemctl status galerie
+```
+
+Exemple :
+
+```text
+● galerie.service - Galerie Photo
+     Loaded: loaded
+     Active: active (running)
+```
+
+### Consultation des journaux
+
+Afficher l'historique :
+
+```bash
+journalctl -u galerie
+```
+
+Suivre les messages en temps réel :
+
+```bash
+journalctl -fu galerie
+```
+
+Exemple :
+
+```text
+Nov 01 06:19:31 raspberrypi systemd[1]: Started Galerie Photo.
+Nov 01 06:19:32 raspberrypi python3[9602]: * Serving Flask app 'app'
+Nov 01 06:19:33 raspberrypi python3[9602]: 192.168.1.21 - - [01/Nov/2026 06:19:33] "GET / HTTP/1.1" 200 -
+```
+
+### Redémarrage après modification du code
+
+```bash
+sudo systemctl restart galerie
+```
+
+### Arrêt du ash
+sudo systemctl stop galerie
+```
+
+### Désactivation du démarrage automatique
+
+```bash
+sudo systemctl disable galerie
+```
+
+---
+
+## Exemple d'utilisation
+
+Depuis un navigateur :
+
+```bash
+firefox http://galerie:8000
+```
 
 ![utilisation](app_photo/doc/img/galerie_utilisation.png)
 
-`firefox http://galerie:8000`
+Recherche de toutes les images contenant "vacances" :
+
+```text
+vacances
+```
+
+Recherche de toutes les images de février 2024 :
+
+```text
+202402
+```
+
+Recherche via expression régulière :
+
+```text
+IMG-2024.*WA
+```
+
+Recherche des images WhatsApp :
+
+```text
+WhatsApp
+```
+
+Par défaut, les résultats sont paginés par groupe de 20 images. Les boutons de navigation permettent d'accéder aux pages suivantes tout en conservant le filtre de recherche.
 
 ## Pratique
 
